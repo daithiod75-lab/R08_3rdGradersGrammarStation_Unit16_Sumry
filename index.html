@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UNIT 16: Present Perfect - Grammar Station</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif;
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #4338ca 100%);
+    }
+    .word-chip {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .word-chip:hover {
+      transform: translateY(-2px);
+    }
+    .word-chip:active {
+      transform: translateY(0);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col">
+
+  <!-- TOP HEADER / HERO -->
+  <header class="gradient-bg text-white shadow-xl relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/30 text-indigo-200 text-xs font-bold uppercase tracking-wider border border-indigo-400/30">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Grammar Station - Unit 16
+            </span>
+            <!-- Language Toggle Switch -->
+            <button onclick="toggleLanguage()" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/20 cursor-pointer shadow-sm">
+              <i data-lucide="languages" class="w-3.5 h-3.5 text-amber-300"></i>
+              <span id="lang-btn-text">Language: 日本語 / English</span>
+            </button>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white" id="header-title">
+            Present Perfect: 現在完了形の意味
+          </h1>
+          <p class="mt-2 text-indigo-100 max-w-2xl text-sm sm:text-base leading-relaxed" id="header-subtitle">
+            完了・結果・経験・継続を表す表現と、過去形との明確な使い分けをマスターしましょう！
+          </p>
+        </div>
+
+        <!-- Dashboard Stats Widget -->
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 grid grid-cols-3 gap-4 text-center min-w-[280px]">
+          <div>
+            <span class="block text-xs text-indigo-200 font-medium" id="lbl-stat-total">解いた問題 / Answered</span>
+            <span id="stat-total" class="text-2xl font-black text-white">0</span>
+          </div>
+          <div>
+            <span class="block text-xs text-indigo-200 font-medium" id="lbl-stat-correct">正解数 / Correct</span>
+            <span id="stat-correct" class="text-2xl font-black text-emerald-400">0</span>
+          </div>
+          <div>
+            <span class="block text-xs text-indigo-200 font-medium" id="lbl-stat-accuracy">正答率 / Accuracy</span>
+            <span id="stat-accuracy" class="text-2xl font-black text-amber-300">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex space-x-2 mt-8 overflow-x-auto pb-2 custom-scrollbar">
+        <button onclick="switchTab('sec1')" id="tab-sec1" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all flex items-center gap-2 bg-white text-indigo-900 shadow-lg">
+          <i data-lucide="book-open" class="w-4 h-4"></i> <span class="nav-text" data-ja="Sec 1: 文法講義" data-en="Sec 1: Grammar Core">Sec 1: 文法講義</span>
+        </button>
+        <button onclick="switchTab('sec2')" id="tab-sec2" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all flex items-center gap-2 bg-indigo-900/40 text-indigo-100 hover:bg-indigo-800/50">
+          <i data-lucide="edit-3" class="w-4 h-4"></i> <span class="nav-text" data-ja="Sec 2: 基礎演習" data-en="Sec 2: Basic Practice">Sec 2: 基礎演習</span>
+        </button>
+        <button onclick="switchTab('sec3')" id="tab-sec3" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all flex items-center gap-2 bg-indigo-900/40 text-indigo-100 hover:bg-indigo-800/50">
+          <i data-lucide="layers" class="w-4 h-4"></i> <span class="nav-text" data-ja="Sec 3: 並べ替え・英作文" data-en="Sec 3: Sentence Building">Sec 3: 並べ替え・英作文</span>
+        </button>
+        <button onclick="switchTab('sec4')" id="tab-sec4" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all flex items-center gap-2 bg-indigo-900/40 text-indigo-100 hover:bg-indigo-800/50">
+          <i data-lucide="award" class="w-4 h-4"></i> <span class="nav-text" data-ja="Sec 4: 実践テスト (全24問)" data-en="Sec 4: Practice Test (24 Qs)">Sec 4: 実践テスト (全24問)</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+
+    <!-- SECTION 1: 文法講義 (Grammar Core) -->
+    <section id="sec1" class="tab-content space-y-8">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="p-3 bg-indigo-100 rounded-2xl text-indigo-600">
+            <i data-lucide="compass" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900" id="sec1-head-title">1. 現在完了形（have / has + 過去分詞）の基本知識</h2>
+            <p class="text-slate-500 text-sm" id="sec1-head-sub">過去に起きたことが「現在にもつながっている」ことを表します。/ Expresses that something in the past connects to the present.</p>
+          </div>
+        </div>
+
+        <!-- Adverb Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <!-- 完了・結果 -->
+          <div class="bg-indigo-50/60 rounded-2xl p-5 border border-indigo-100">
+            <div class="inline-block px-3 py-1 rounded-full bg-indigo-600 text-white text-xs font-bold mb-3">
+              〈完了・結果 / Completion & Result〉
+            </div>
+            <h3 class="font-bold text-slate-800 mb-2 text-base" id="card1-title">よく使われる副詞</h3>
+            <ul class="space-y-2 text-sm text-slate-600" id="card1-list">
+              <li class="flex items-start gap-2"><span class="font-bold text-indigo-600">already</span>：「すでに，もう」（肯定文）</li>
+              <li class="flex items-start gap-2"><span class="font-bold text-indigo-600">just</span>：「ちょうど，たった今」</li>
+              <li class="flex items-start gap-2"><span class="font-bold text-indigo-600">yet</span>：「（疑問文）もう / （否定文）まだ」</li>
+            </ul>
+          </div>
+
+          <!-- 経験 -->
+          <div class="bg-amber-50/60 rounded-2xl p-5 border border-amber-100">
+            <div class="inline-block px-3 py-1 rounded-full bg-amber-600 text-white text-xs font-bold mb-3">
+              〈経験 / Experience〉
+            </div>
+            <h3 class="font-bold text-slate-800 mb-2 text-base" id="card2-title">よく使われる副詞</h3>
+            <ul class="space-y-2 text-sm text-slate-600" id="card2-list">
+              <li class="flex items-start gap-2"><span class="font-bold text-amber-600">never</span>：「一度も…ない」</li>
+              <li class="flex items-start gap-2"><span class="font-bold text-amber-600">ever</span>：「これまでに，今までに」（疑問文）</li>
+              <li class="flex items-start gap-2"><span class="font-bold text-amber-600">once / twice</span>：「1回 / 2回」</li>
+            </ul>
+          </div>
+
+          <!-- 継続 -->
+          <div class="bg-emerald-50/60 rounded-2xl p-5 border border-emerald-100">
+            <div class="inline-block px-3 py-1 rounded-full bg-emerald-600 text-white text-xs font-bold mb-3">
+              〈継続 / Continuation〉
+            </div>
+            <h3 class="font-bold text-slate-800 mb-2 text-base" id="card3-title">よく使われる表現</h3>
+            <ul class="space-y-2 text-sm text-slate-600" id="card3-list">
+              <li class="flex items-start gap-2"><span class="font-bold text-emerald-600">for ...</span>：「…の間」（期間: for 5 years）</li>
+              <li class="flex items-start gap-2"><span class="font-bold text-emerald-600">since ...</span>：「…から，以来」（起点: since 2020）</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Critical Grammar Rule Box -->
+        <div class="bg-rose-50 rounded-2xl p-6 border border-rose-200">
+          <div class="flex items-center gap-3 text-rose-800 font-bold text-lg mb-3" id="alert-rule-head">
+            <i data-lucide="alert-triangle" class="w-5 h-5 text-rose-600"></i>
+            超重要ポイント：現在完了形と一緒に使えない語句 / Critical Rule
+          </div>
+          <p class="text-slate-700 text-sm leading-relaxed mb-4" id="alert-rule-body">
+            現在完了形は「<strong>現在の状況に焦点を当てる</strong>」表現です。そのため、<strong>明確に過去の一時点を表す言葉</strong>（例: <em>yesterday, last week, ago, when ..., just now, in 2010</em> など）とは<strong>一緒に使えません</strong>。過去を表す語句がある場合は<strong>過去形（Past Simple）</strong>を使います！
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+            <div class="bg-white p-3 rounded-xl border border-rose-200 text-rose-900">
+              ❌ I <strong>have seen</strong> him <span class="bg-rose-100 px-1.5 py-0.5 rounded font-bold">yesterday</span>.
+            </div>
+            <div class="bg-white p-3 rounded-xl border border-emerald-200 text-emerald-900">
+              ⭕ I <strong>saw</strong> him <span class="bg-emerald-100 px-1.5 py-0.5 rounded font-bold">yesterday</span>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: 基礎演習 (Basic Exercises) -->
+    <section id="sec2" class="tab-content hidden space-y-8">
+      
+      <!-- Part A: 穴埋め演習 -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full uppercase tracking-wider">Part A</span>
+            <h2 class="text-xl font-bold text-slate-900 mt-1" id="parta-title">適語補充問題（完了・経験・継続）</h2>
+            <p class="text-slate-500 text-sm" id="parta-sub">日本文に合うように空欄に適語を補いなさい。/ Fill in each blank to complete the English sentence.</p>
+          </div>
+        </div>
+
+        <div id="partA-container" class="space-y-6">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- Part A Self-Grading Action Bar -->
+        <div class="mt-8 pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+          <button onclick="gradePartA()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-md transition-all flex items-center gap-2">
+            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+            <span id="btn-grade-parta">Part A を採点する (自己採点) / Submit Part A</span>
+          </button>
+          <div id="parta-score-display" class="hidden font-bold text-slate-800 text-base"></div>
+        </div>
+      </div>
+
+      <!-- Part B: 和訳問題 -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full uppercase tracking-wider">Part B</span>
+            <h2 class="text-xl font-bold text-slate-900 mt-1" id="partb-title">英文和訳演習</h2>
+            <p class="text-slate-500 text-sm" id="partb-sub">英文を読み、適切な日本語訳を選択しなさい。/ Choose the best Japanese translation.</p>
+          </div>
+        </div>
+
+        <div id="partB-container" class="space-y-6">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- Part B Self-Grading Action Bar -->
+        <div class="mt-8 pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+          <button onclick="gradePartB()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-md transition-all flex items-center gap-2">
+            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+            <span id="btn-grade-partb">Part B を採点する (自己採点) / Submit Part B</span>
+          </button>
+          <div id="partb-score-display" class="hidden font-bold text-slate-800 text-base"></div>
+        </div>
+      </div>
+
+      <!-- Part 2: 過去形 vs 現在完了形 選択問題 -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full uppercase tracking-wider">Part 2</span>
+            <h2 class="text-xl font-bold text-slate-900 mt-1" id="part2-title">過去形か？ 現在完了形か？ 選択演習</h2>
+            <p class="text-slate-500 text-sm" id="part2-sub">［ ］内から適切な動詞の形を選びなさい。/ Choose between Past Simple and Present Perfect.</p>
+          </div>
+        </div>
+
+        <div id="part2-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- Part 2 Self-Grading Action Bar -->
+        <div class="mt-8 pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+          <button onclick="gradePart2()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-md transition-all flex items-center gap-2">
+            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+            <span id="btn-grade-part2">Part 2 を採点する (自己採点) / Submit Part 2</span>
+          </button>
+          <div id="part2-score-display" class="hidden font-bold text-slate-800 text-base"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECTION 3: 並べ替え・英作文 (Sentence Building) -->
+    <section id="sec3" class="tab-content hidden space-y-8">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="p-3 bg-indigo-100 rounded-2xl text-indigo-600">
+            <i data-lucide="layers" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-slate-900" id="sec3-title">ステップアップ英作文（並べ替え → 英作文）</h2>
+            <p class="text-slate-500 text-sm" id="sec3-sub">(a)で語順を並べ替えてマスターし、(b)で類題の英作文にチャレンジ！ / (a) Word ordering practice, (b) Translation writing!</p>
+          </div>
+        </div>
+
+        <div id="sec3-container" class="space-y-8">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: 実践テスト (Choose Mode) -->
+    <section id="sec4" class="tab-content hidden space-y-8">
+      
+      <!-- MODE SELECTION CARD -->
+      <div id="sec4-mode-select" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200 text-center">
+        <div class="inline-flex items-center justify-center p-4 bg-indigo-100 text-indigo-600 rounded-3xl mb-4">
+          <i data-lucide="zap" class="w-10 h-10"></i>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2" id="sec4-mode-title">Section 4: 総合問題チャレンジ (全24問)</h2>
+        <p class="text-slate-600 max-w-xl mx-auto text-sm sm:text-base mb-8" id="sec4-mode-sub">
+          Unit 16の全24問で実力をテストしましょう。<br>希望する学習スタイルを選択してください。
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <!-- Speed Test Mode Card -->
+          <div class="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 hover:border-amber-400 rounded-3xl p-6 text-left flex flex-col justify-between transition-all hover:shadow-lg group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-3 py-1 bg-amber-500 text-white font-bold text-xs rounded-full uppercase tracking-wider flex items-center gap-1">
+                  <i data-lucide="timer" class="w-3.5 h-3.5"></i> <span id="lbl-speed-badge">スピード勝負</span>
+                </span>
+                <i data-lucide="zap" class="w-6 h-6 text-amber-500 group-hover:scale-110 transition-transform"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">Speed Test Mode</h3>
+              <p class="text-slate-600 text-sm mb-4 leading-relaxed" id="speed-desc">
+                1問ごとに制限時間（20秒）がカウントダウン！直感的な判断力と即答力を鍛えます。
+              </p>
+            </div>
+            <button onclick="startChallenge('speed')" class="w-full py-3 px-6 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-2xl shadow-md transition-all flex items-center justify-center gap-2">
+              <i data-lucide="play" class="w-4 h-4"></i> <span id="btn-start-speed">スピードテストを開始</span>
+            </button>
+          </div>
+
+          <!-- Exam Style Mode Card -->
+          <div class="bg-gradient-to-br from-indigo-50 to-blue-50 border-2 border-indigo-200 hover:border-indigo-400 rounded-3xl p-6 text-left flex flex-col justify-between transition-all hover:shadow-lg group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-3 py-1 bg-indigo-600 text-white font-bold text-xs rounded-full uppercase tracking-wider flex items-center gap-1">
+                  <i data-lucide="file-text" class="w-3.5 h-3.5"></i> <span id="lbl-exam-badge">本番形式</span>
+                </span>
+                <i data-lucide="award" class="w-6 h-6 text-indigo-600 group-hover:scale-110 transition-transform"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">模擬試験 Style Mode</h3>
+              <p class="text-slate-600 text-sm mb-4 leading-relaxed" id="exam-desc">
+                本番の試験と同じ形式！全体タイマーのもとで自由に見直しや回答変更が可能。最後にまとめて提出します。
+              </p>
+            </div>
+            <button onclick="startChallenge('exam')" class="w-full py-3 px-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-md transition-all flex items-center justify-center gap-2">
+              <i data-lucide="file-check" class="w-4 h-4"></i> <span id="btn-start-exam">模擬試験を開始</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIVE TEST INTERFACE (Dynamic) -->
+      <div id="sec4-quiz-active" class="hidden space-y-6">
+        <!-- Top Status Bar -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span id="quiz-mode-badge" class="px-3 py-1 rounded-full text-xs font-bold text-white bg-indigo-600">
+              Exam Mode
+            </span>
+            <span class="text-sm font-bold text-slate-700">
+              <span id="lbl-question-num">問題 / Q</span> <span id="quiz-curr-num" class="text-indigo-600 text-lg">1</span> / <span id="quiz-total-num">24</span>
+            </span>
+          </div>
+
+          <!-- Timer Bar -->
+          <div class="flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-xl text-slate-700 font-bold text-sm">
+            <i data-lucide="clock" class="w-4 h-4 text-indigo-600"></i>
+            <span id="quiz-timer-label">残り時間 / Time:</span>
+            <span id="quiz-timer-display" class="font-mono text-indigo-600">00:00</span>
+          </div>
+
+          <button onclick="abortChallenge()" class="text-xs text-rose-600 hover:text-rose-800 font-bold" id="btn-abort">
+            中断して戻る / Quit
+          </button>
+        </div>
+
+        <!-- Question Card -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200">
+          <div id="quiz-question-box" class="space-y-6">
+            <!-- Populated via JS -->
+          </div>
+
+          <!-- Speed Mode Feedback Box -->
+          <div id="speed-feedback-box" class="mt-6 p-4 rounded-2xl hidden"></div>
+
+          <!-- Navigation Footer -->
+          <div id="quiz-nav-footer" class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between gap-4">
+            <button id="btn-prev-q" onclick="navigateExam(-1)" class="px-5 py-2.5 rounded-xl border border-slate-300 font-bold text-slate-600 hover:bg-slate-50 disabled:opacity-40">
+              前へ / Prev
+            </button>
+            <div id="exam-grid-nav" class="hidden sm:flex gap-1.5 overflow-x-auto py-1 max-w-md custom-scrollbar">
+              <!-- Quick jump buttons for exam mode -->
+            </div>
+            <button id="btn-next-q" onclick="navigateExam(1)" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold shadow-sm">
+              次へ / Next
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TEST RESULT CARD -->
+      <div id="sec4-result-card" class="hidden bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-slate-200 text-center">
+        <div class="inline-flex items-center justify-center p-4 bg-emerald-100 text-emerald-600 rounded-full mb-4">
+          <i data-lucide="trophy" class="w-12 h-12"></i>
+        </div>
+        <h2 class="text-3xl font-black text-slate-900 mb-1" id="res-head-title">テスト完了！ / Test Completed!</h2>
+        <p class="text-slate-500 text-sm mb-6" id="res-head-sub">お疲れ様でした！あなたのスコア結果です。</p>
+
+        <div class="max-w-md mx-auto bg-slate-50 rounded-2xl p-6 border border-slate-200 mb-8 grid grid-cols-2 gap-4">
+          <div>
+            <span class="text-xs text-slate-500 font-bold block" id="res-lbl-score">獲得スコア / Score</span>
+            <span id="result-score" class="text-3xl font-black text-indigo-600">0 / 24</span>
+          </div>
+          <div>
+            <span class="text-xs text-slate-500 font-bold block" id="res-lbl-pct">正答率 / Accuracy</span>
+            <span id="result-pct" class="text-3xl font-black text-emerald-500">0%</span>
+          </div>
+        </div>
+
+        <div id="result-detail-review" class="text-left max-w-2xl mx-auto space-y-4 mb-8 max-h-96 overflow-y-auto custom-scrollbar p-2">
+          <!-- Itemized Breakdown -->
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4">
+          <button onclick="resetChallenge()" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-md transition-all flex items-center gap-2">
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+            <span id="btn-retry-test">もう一度チャレンジする / Retry Test</span>
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 py-8 text-center text-xs border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4">
+      <p>© GrammarStation - Unit 16 Present Perfect (Meanings & Usage). All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // GLOBAL STATE & DATA
+    let currentLang = 'ja'; // 'ja' or 'en'
+    let globalStats = { total: 0, correct: 0 };
+
+    // SECTION 2 DATA - EXACT INLINE BLANKS STRUCTURE
+    const dataSectionA = [
+      {
+        id: 'a1',
+        jp: '私の父はちょうど昼食を食べたところだ。',
+        en: 'My father has just eaten lunch.',
+        hint: '【ヒント】「主語（三人称単数）＋ 助動詞 ＋『ちょうど』を表す副詞 ＋『食べる』の過去分詞 ＋ 目的語」の形を考えましょう。',
+        hintEn: 'Hint: Follow the pattern: Subject (3rd person singular) + auxiliary verb + adverb meaning "just" + past participle of "eat" + object.',
+        tokens: [
+          { type: 'text', value: 'My father ' },
+          { type: 'input', key: 'has', width: 'w-20' },
+          { type: 'text', value: ' ' },
+          { type: 'input', key: 'just', width: 'w-20' },
+          { type: 'text', value: ' ' },
+          { type: 'input', key: 'eaten', width: 'w-24' },
+          { type: 'text', value: ' lunch.' }
+        ]
+      },
+      {
+        id: 'a2',
+        jp: '私たちはニューヨークに5年間住んでいる。',
+        en: 'We have lived in New York for five years.',
+        hint: '【ヒント】主語が 1人称複数(We)で「住んでいる」という【継続】を表します。「5年間」という“期間”の前にはどの前置詞（for / since）を使うか考えましょう。',
+        hintEn: 'Hint: Plural subject (We) expressing continuation ("live"). Consider which preposition (for vs. since) indicates a length or duration of time.',
+        tokens: [
+          { type: 'text', value: 'We ' },
+          { type: 'input', key: 'have', width: 'w-20' },
+          { type: 'text', value: ' ' },
+          { type: 'input', key: 'lived', width: 'w-24' },
+          { type: 'text', value: ' in New York ' },
+          { type: 'input', key: 'for', width: 'w-20' },
+          { type: 'text', value: ' five years.' }
+        ]
+      },
+      {
+        id: 'a3',
+        jp: '私は大勢の聴衆の前でピアノを弾いたことが一度もない。',
+        en: 'I have never played the piano in front of a large audience.',
+        hint: '【ヒント】「今まで一度も…ない」という【経験の否定】を表す副詞を have/has と動詞の過去分詞の間に置きます。「弾く」の過去分詞形にも注意しましょう。',
+        hintEn: 'Hint: Place an adverb meaning "at no time / never" between "have" and the past participle of "play" to show negative experience.',
+        tokens: [
+          { type: 'text', value: 'I ' },
+          { type: 'input', key: 'have', width: 'w-20' },
+          { type: 'text', value: ' ' },
+          { type: 'input', key: 'never', width: 'w-20' },
+          { type: 'text', value: ' ' },
+          { type: 'input', key: 'played', width: 'w-24' },
+          { type: 'text', value: ' the piano in front of a large audience.' }
+        ]
+      },
+      {
+        id: 'a4',
+        jp: 'それらのTシャツはまだ売り切れていない。',
+        en: "Those T-shirts haven't sold out yet.",
+        hint: '【ヒント】主語が複数形です。「まだ…ない」という【完了の否定】をつくるため、助動詞の否定形＋過去分詞、そして文末に置く副詞を選びましょう。',
+        hintEn: 'Hint: Plural subject. Combine the negative auxiliary verb + past participle of "sell", placing the adverb meaning "yet" at the sentence end.',
+        tokens: [
+          { type: 'text', value: 'Those T-shirts ' },
+          { type: 'input', key: "haven't", width: 'w-24' },
+          { type: 'text', value: ' ' },
+          { type: 'input', key: 'sold', width: 'w-20' },
+          { type: 'text', value: ' out ' },
+          { type: 'input', key: 'yet', width: 'w-20' },
+          { type: 'text', value: '.' }
+        ]
+      },
+      {
+        id: 'a5',
+        jp: '彼女の両親は2回ロンドンに行ったことがある。',
+        en: 'Her parents have been to London twice.',
+        hint: '【ヒント】「～へ行ったことがある」という【経験】を表す過去分詞フレーズ（have ... to）と、「2回」を表す回数の副詞の形を思いだしましょう。',
+        hintEn: 'Hint: Express experience ("have been to") and use the frequency adverb that means "two times" at the end.',
+        tokens: [
+          { type: 'text', value: 'Her parents ' },
+          { type: 'input', key: 'have', width: 'w-20' },
+          { type: 'text', value: ' ' },
+          { type: 'input', key: 'been', width: 'w-20' },
+          { type: 'text', value: ' to London ' },
+          { type: 'input', key: 'twice', width: 'w-24' },
+          { type: 'text', value: '.' }
+        ]
+      },
+      {
+        id: 'a6',
+        jp: 'ジムは今朝からDVDをずっと見ている。',
+        en: 'Jim has been watching the DVD all this morning.',
+        hint: '【ヒント】「ずっと～し続けている」という継続の動作は〈has been watching〉の現在完了進行形を使います。1つ目の空欄に "has been"（または "has"）、2つ目に "watching"（または "been watching"）、最後の空欄には "all" または "since" を入れましょう。',
+        hintEn: 'Hint: Express ongoing action with present perfect continuous ("has been watching"). Enter "has been" & "watching" or "has" & "been watching", and "all" or "since" in the last blank.',
+        tokens: [
+          { type: 'text', value: 'Jim ' },
+          { type: 'input', key: ['has been', 'has'], width: 'w-28' },
+          { type: 'text', value: ' ' },
+          { type: 'input', key: ['watching', 'been watching', 'watched'], width: 'w-32' },
+          { type: 'text', value: ' the DVD ' },
+          { type: 'input', key: ['all', 'since'], width: 'w-20' },
+          { type: 'text', value: ' this morning.' }
+        ]
+      },
+      {
+        id: 'a7',
+        jp: 'あなたたち全員，その雑誌をもう読みましたか。',
+        en: 'Have all of you read the magazine yet?',
+        hint: '【ヒント】疑問文にするため先頭に置く助動詞（大文字）、動詞「読む」の過去分詞形、そして疑問文末で「もう」を表す副詞を順に考えましょう。',
+        hintEn: 'Hint: Start with the correct auxiliary verb in capital form, followed by the past participle of "read", and the adverb meaning "already/yet" used in questions.',
+        tokens: [
+          { type: 'input', key: 'Have', width: 'w-20' },
+          { type: 'text', value: ' all of you ' },
+          { type: 'input', key: 'read', width: 'w-20' },
+          { type: 'text', value: ' the magazine ' },
+          { type: 'input', key: 'yet', width: 'w-20' },
+          { type: 'text', value: '?' }
+        ]
+      }
+    ];
+
+    const dataSectionB = [
+      {
+        id: 'b1',
+        en: 'Have you ever discussed the problem?',
+        options: [
+          'あなたは今までにその問題について議論したことがありますか。',
+          'あなたはなぜその問題について議論しているのですか。',
+          'あなたはすでにその問題を解決しましたか。'
+        ],
+        optionsEn: [
+          'Have you ever discussed the problem before?',
+          'Why are you discussing the problem?',
+          'Have you already solved the problem?'
+        ],
+        correct: 0,
+        hint: '【ヒント】ever は疑問文で経験（これまでに）を尋ねる副詞で、discuss は「～について話し合う・議論する」という意味です。',
+        hintEn: 'Hint: "ever" in questions asks about life experience, and "discuss" means to debate or talk about a topic.'
+      },
+      {
+        id: 'b2',
+        en: 'Ken has just bought two tickets for the concert.',
+        options: [
+          'ケンはちょうどコンサートのチケットを2枚買ったところだ。',
+          'ケンは以前コンサートのチケットを2枚買ったことがある。',
+          'ケンはまだコンサートのチケットを2枚買っていない。'
+        ],
+        optionsEn: [
+          'Ken has just bought two tickets for the concert.',
+          'Ken has bought two tickets before.',
+          'Ken has not bought two tickets yet.'
+        ],
+        correct: 0,
+        hint: '【ヒント】just は「ちょうど，たった今～した」という動作の完了直後を表す副詞です。',
+        hintEn: 'Hint: "just" indicates an action that was completed a very short time ago.'
+      },
+      {
+        id: 'b3',
+        en: 'Mr. Davis has not arrived at the station yet.',
+        options: [
+          'デイビス氏はまだ駅に到着していない。',
+          'デイビス氏はすでに駅に到着した。',
+          'デイビス氏は駅に到着したことがありますか。'
+        ],
+        optionsEn: [
+          'Mr. Davis has not arrived at the station yet.',
+          'Mr. Davis has already arrived at the station.',
+          'Has Mr. Davis ever arrived at the station?'
+        ],
+        correct: 0,
+        hint: '【ヒント】has not ... yet は否定文で「まだ～していない（完了していない）」ことを示します。',
+        hintEn: 'Hint: "has not ... yet" conveys that an expected action hasn\'t taken place up to now.'
+      },
+      {
+        id: 'b4',
+        en: 'The heavy rain has stopped.',
+        options: [
+          '激しい雨がやんだ（今はやんでいる）。',
+          '激しい雨がもうすぐやむだろう。',
+          '激しい雨がずっと降り続いている。'
+        ],
+        optionsEn: [
+          'The heavy rain has stopped (and is not raining now).',
+          'The heavy rain will stop soon.',
+          'The heavy rain has been continuing.'
+        ],
+        correct: 0,
+        hint: '【ヒント】現在完了形の「結果」は、過去に起きたことの結果として「現在の状態がどうであるか」を表します。',
+        hintEn: 'Hint: Present Perfect for results shows how a past action affects the current situation.'
+      }
+    ];
+
+    const dataPart2 = [
+      {
+        id: 'p2_1',
+        text: 'Bob __________ an actor last September.',
+        options: ['became', 'has become'],
+        correct: 'became',
+        hint: '【ヒント】last September（去年の9月）のように「明確な過去の時を示す語句」がある場合、現在完了形ではなくどの時制を使うべきか考えましょう。',
+        hintEn: 'Hint: When a phrase specifies a definite past time point (like "last September"), consider which tense must be used instead of present perfect.'
+      },
+      {
+        id: 'p2_2',
+        text: "Kate's son __________ home just now.",
+        options: ['came', 'has come'],
+        correct: 'came',
+        hint: '【ヒント】just now（たった今、ついさきほど）は過去の一時点を表す表現です。過去の出来事を単純に示す時制を選びましょう。',
+        hintEn: 'Hint: "just now" refers to a specific moment in the past, so choose the tense that describes completed past actions.'
+      },
+      {
+        id: 'p2_3',
+        text: '__________ the movie started yet?',
+        options: ['Did', 'Has'],
+        correct: 'Has',
+        hint: '【ヒント】文末の yet（もう～したか）に注目しましょう。「もうすでに映画が始まったか」という完了を尋ねる時制の助動詞を選びます。',
+        hintEn: 'Hint: Notice "yet" at the end of the sentence. Pick the auxiliary verb that forms a question about completed state.'
+      },
+      {
+        id: 'p2_4',
+        text: 'Mr. White __________ to Australia last week.',
+        options: ['returned', 'has returned'],
+        correct: 'returned',
+        hint: '【ヒント】last week（先週）は過去の特定の時期を表します。現在完了形と併用できないルールを思い出しましょう。',
+        hintEn: 'Hint: "last week" specifies a past timeframe. Recall the rule about expressions that cannot be used with Present Perfect.'
+      },
+      {
+        id: 'p2_5',
+        text: 'When __________ in Tokyo?',
+        options: ['did Jill arrive', 'has Jill arrived'],
+        correct: 'did Jill arrive',
+        hint: '【ヒント】When（いつ～したか）と過去の特定の時を尋ねる疑問文では、現在完了形を使えるか、それとも過去形を使うべきか確認しましょう。',
+        hintEn: 'Hint: Questions starting with "When" ask for a specific point in past time. Check which structure is grammatically allowed.'
+      },
+      {
+        id: 'p2_6',
+        text: 'Takuya and Mari __________ each other for ten years. They are good friends.',
+        options: ['knew', 'have known'],
+        correct: 'have known',
+        hint: '【ヒント】for ten years（10年間）という期間があり、現在も「良い友達である」と続いている状態（継続）を表す時制を選びます。',
+        hintEn: 'Hint: Look at "for ten years" and the second sentence showing they are still friends today. Pick the tense expressing duration into the present.'
+      },
+      {
+        id: 'p2_7',
+        text: 'When I __________ the room, Tom smiled at me.',
+        options: ['entered', 'have entered'],
+        correct: 'entered',
+        hint: '【ヒント】「私が部屋に入った時」という過去の特定の動作を表す When 節の中で適した動詞の形を選びましょう。',
+        hintEn: 'Hint: Choose the verb form that fits inside a time clause describing a specific action in the past ("When I ...").'
+      }
+    ];
+
+    const dataSection3 = [
+      {
+        id: 's3_1',
+        title: '1. 「経験」に関する表現 / Experience',
+        a_jp: 'あなたは今までに私たちの会社について聞いたことがありますか。',
+        a_en: 'Have you ever heard about our company?',
+        a_words: ['Have', 'you', 'ever', 'heard', 'about', 'our company'],
+        a_correct: 'Have you ever heard about our company?',
+        a_hint: '【ヒント】語順: Have + 主語(you) + ever + 過去分詞(heard) + about ... ? の順番で並べ替えましょう。',
+        a_hintEn: 'Hint Order: Have + Subject(you) + ever + Past Participle(heard) + about ... ?',
+        
+        b_jp: 'あなたは今までにその事故（the accident）について聞いたことがありますか。',
+        b_en: 'Have you ever heard about the accident?',
+        b_correct: 'Have you ever heard about the accident?',
+        b_hint: '【ヒント】(a)の our company を the accident に置き換えて英文を作成してみましょう！',
+        b_hintEn: 'Hint: Replace "our company" in (a) with "the accident".'
+      },
+      {
+        id: 's3_2',
+        title: '2. 「完了」に関する表現 / Completion',
+        a_jp: '彼らはすでにその仕事を終えてしまいました。',
+        a_en: 'They have already finished the work.',
+        a_words: ['They', 'have', 'already', 'finished', 'the work'],
+        a_correct: 'They have already finished the work.',
+        a_hint: '【ヒント】語順: 主語(They) + have + already + 過去分詞(finished) + 目的語(the work) の順番です。',
+        a_hintEn: 'Hint Order: Subject(They) + have + already + Past Participle(finished) + Object.',
+
+        b_jp: '私の姉［妹］はすでに宿題を終えてしまいました。',
+        b_en: 'My sister has already finished her homework.',
+        b_correct: 'My sister has already finished her homework.',
+        b_hint: '【ヒント】主語は My sister（三人称単数なので has）。「宿題」は her homework になります。',
+        b_hintEn: 'Hint: Subject is "My sister" (use "has"). "Homework" is "her homework".'
+      },
+      {
+        id: 's3_3',
+        title: '3. 「継続」に関する表現 / Continuation',
+        a_jp: '彼らは昨夜からずっと忙しい。',
+        a_en: 'They have been busy since last night.',
+        a_words: ['They', 'have', 'been', 'busy', 'since', 'last night'],
+        a_correct: 'They have been busy since last night.',
+        a_hint: '【ヒント】語順: They + have + been + busy + since + last night の順に並べます。',
+        a_hintEn: 'Hint Order: Subject + have + been + adjective(busy) + since + point of time.',
+
+        b_jp: '私の叔父は昨夜からずっと病院（the hospital）にいる。',
+        b_en: 'My uncle has been in the hospital since last night.',
+        b_correct: 'My uncle has been in the hospital since last night.',
+        b_hint: '【ヒント】主語 My uncle に対応する助動詞は has。「病院にいる」は in the hospital を使います。',
+        b_hintEn: 'Hint: Subject "My uncle" requires "has". "in the hospital" represents location.'
+      }
+    ];
+
+    // ALL 24 QUESTIONS FOR SECTION 4
+    const quizPool = [
+      { id: 1, q: 'My father _____ just eaten lunch.', options: ['has', 'have', 'is', 'was'], correct: 'has', expl: '主語が三人称単数 (My father) のため has を使用します。' },
+      { id: 2, q: 'We have lived in New York _____ five years.', options: ['for', 'since', 'during', 'from'], correct: 'for', expl: '期間（5年間）を表す場合は for を用います。' },
+      { id: 3, q: 'I have _____ played the piano in front of a large audience. (一度も〜ない)', options: ['never', 'ever', 'already', 'yet'], correct: 'never', expl: '「一度も…ない」という否定の経験には never を使います。' },
+      { id: 4, q: 'Those T-shirts haven\'t sold out _____.', options: ['yet', 'already', 'just', 'never'], correct: 'yet', expl: '否定文の文末で「まだ〜ない」を表すのは yet です。' },
+      { id: 5, q: 'Her parents have been to London _____. (2回)', options: ['twice', 'two times', 'second', 'once'], correct: 'twice', expl: '「2回」を表す副詞は twice です。' },
+      { id: 6, q: 'Jim has watched the DVD _____ this morning.', options: ['since', 'for', 'from', 'at'], correct: 'since', expl: '起点の時（今朝から）を表すには since を使います。' },
+      { id: 7, q: '_____ all of you read the magazine yet?', options: ['Have', 'Did', 'Has', 'Are'], correct: 'Have', expl: '主語 all of you（複数）の現在完了形疑問文は Have で始めます。' },
+      { id: 8, q: 'Bob _____ an actor last September.', options: ['became', 'has become', 'becomes', 'is becoming'], correct: 'became', expl: 'last September（明確な過去の一時点）があるため過去形です。' },
+      { id: 9, q: 'Kate\'s son _____ home just now.', options: ['came', 'has come', 'comes', 'is coming'], correct: 'came', expl: 'just now（たった今）は過去の一時点を表すため過去形になります。' },
+      { id: 10, q: '_____ the movie started yet?', options: ['Has', 'Did', 'Is', 'Have'], correct: 'Has', expl: 'the movie（単数）の完了を尋ねるため Has で始めます。' },
+      { id: 11, q: 'Mr. White _____ to Australia last week.', options: ['returned', 'has returned', 'returns', 'is returning'], correct: 'returned', expl: 'last week（明確な過去）があるので過去形です。' },
+      { id: 12, q: 'When _____ in Tokyo?', options: ['did Jill arrive', 'has Jill arrived', 'does Jill arrive', 'was Jill arrived'], correct: 'did Jill arrive', expl: 'When で過去の時点を尋ねる疑問文には現在完了形は使えません。' },
+      { id: 13, q: 'Takuya and Mari _____ each other for ten years. They are good friends.', options: ['have known', 'knew', 'know', 'are knowing'], correct: 'have known', expl: 'for ten years で現在も知り合い（継続）なので現在完了形です。' },
+      { id: 14, q: 'When I _____ the room, Tom smiled at me.', options: ['entered', 'have entered', 'enter', 'was entered'], correct: 'entered', expl: 'When I ... 節の中は過去の時点を表すため過去形にします。' },
+      { id: 15, q: 'She has _____ finished her homework. (すでに)', options: ['already', 'yet', 'ever', 'since'], correct: 'already', expl: '肯定文で「すでに」を表すには already を位置させます。' },
+      { id: 16, q: 'Have you _____ visited Kyoto?', options: ['ever', 'never', 'already', 'yet'], correct: 'ever', expl: '疑問文で「これまでに」を表すのは ever です。' },
+      { id: 17, q: 'I haven\'t seen him _____ last Sunday.', options: ['since', 'for', 'during', 'by'], correct: 'since', expl: 'last Sunday（過去の起点）から継続しているため since です。' },
+      { id: 18, q: 'How long _____ you studied English?', options: ['have', 'did', 'do', 'are'], correct: 'have', expl: '期間の継続を尋ねる How long have you ... です。' },
+      { id: 19, q: 'They _____ in Paris three years ago.', options: ['lived', 'have lived', 'has lived', 'were living'], correct: 'lived', expl: 'three years ago（3年前）という明確な過去があるので過去形です。' },
+      { id: 20, q: 'My brother has _____ his keys. (紛失した結果今もない)', options: ['lost', 'losing', 'lose', 'loves'], correct: 'lost', expl: '鍵を失くした結果現在もないことを表す過去分詞 lost です。' },
+      { id: 21, q: 'Did you go shopping _____?', options: ['yesterday', 'since yesterday', 'for yesterday', 'already'], correct: 'yesterday', expl: '過去形の疑問文 Did you ... と共に使われるのは yesterday です。' },
+      { id: 22, q: 'We _____ each other since we were kids.', options: ['have known', 'knew', 'know', 'had known'], correct: 'have known', expl: 'since 節を伴う継続表現なので have known です。' },
+      { id: 23, q: '_____ you ever heard this song before?', options: ['Have', 'Did', 'Do', 'Were'], correct: 'Have', expl: 'ever heard を伴う経験の疑問文は Have you ever ... です。' },
+      { id: 24, q: 'She _____ to Paris twice, but she wants to go again.', options: ['has been', 'has gone', 'went', 'was'], correct: 'has been', expl: '「～へ行ったことがある（経験）」は has been to ... です。' }
+    ];
+
+    // LANGUAGE TOGGLE FUNCTIONALITY
+    function toggleLanguage() {
+      currentLang = (currentLang === 'ja') ? 'en' : 'ja';
+      updatePageLanguage();
+    }
+
+    function updatePageLanguage() {
+      const isJa = currentLang === 'ja';
+
+      // Header Labels
+      document.getElementById('header-title').innerText = isJa 
+        ? 'Present Perfect: 現在完了形の意味' 
+        : 'Present Perfect: Meanings & Usage';
+      document.getElementById('header-subtitle').innerText = isJa
+        ? '完了・結果・経験・継続を表す表現と、過去形との明確な使い分けをマスターしましょう！'
+        : 'Master Completion, Result, Experience, and Continuation with Present Perfect vs. Past Simple!';
+
+      document.getElementById('lang-btn-text').innerText = isJa ? 'Language: 日本語 / English' : 'Language: English / 日本語';
+
+      // Stats labels
+      document.getElementById('lbl-stat-total').innerText = isJa ? '解いた問題 / Answered' : 'Answered';
+      document.getElementById('lbl-stat-correct').innerText = isJa ? '正解数 / Correct' : 'Correct';
+      document.getElementById('lbl-stat-accuracy').innerText = isJa ? '正答率 / Accuracy' : 'Accuracy';
+
+      // Section 1 Core Text
+      document.getElementById('sec1-head-title').innerText = isJa ? '1. 現在完了形（have / has + 過去分詞）の基本知識' : '1. Core Grammar Rules: Present Perfect (have / has + past participle)';
+      document.getElementById('sec1-head-sub').innerText = isJa ? '過去に起きたことが「現在にもつながっている」ことを表します。' : 'Connects past events or states directly to the present time.';
+
+      // Render tab texts
+      document.querySelectorAll('.nav-text').forEach(el => {
+        el.innerText = isJa ? el.getAttribute('data-ja') : el.getAttribute('data-en');
+      });
+
+      // Section 2 Header Text
+      document.getElementById('parta-title').innerText = isJa ? '適語補充問題（完了・経験・継続）' : 'Part A: Fill in the Blanks';
+      document.getElementById('parta-sub').innerText = isJa ? '日本文に合うように空欄に適語を補いなさい。' : 'Fill in each blank to complete the correct English sentence.';
+      document.getElementById('partb-title').innerText = isJa ? '英文和訳演習' : 'Part B: Sentence Translation';
+      document.getElementById('partb-sub').innerText = isJa ? '英文を読み、適切な日本語訳を選択しなさい。' : 'Select the most accurate translation for each sentence.';
+      document.getElementById('part2-title').innerText = isJa ? '過去形か？ 現在完了形か？ 選択演習' : 'Part 2: Past Simple vs. Present Perfect';
+      document.getElementById('part2-sub').innerText = isJa ? '［ ］内から適切な動詞の形を選びなさい。' : 'Choose the correct verb form based on time context.';
+
+      document.getElementById('btn-grade-parta').innerText = isJa ? 'Part A を採点する (自己採点)' : 'Submit Part A (Self-Grading)';
+      document.getElementById('btn-grade-partb').innerText = isJa ? 'Part B を採点する (自己採点)' : 'Submit Part B (Self-Grading)';
+      document.getElementById('btn-grade-part2').innerText = isJa ? 'Part 2 を採点する (自己採点)' : 'Submit Part 2 (Self-Grading)';
+
+      // Sec 3 & 4
+      document.getElementById('sec3-title').innerText = isJa ? 'ステップアップ英作文（並べ替え → 英作文）' : 'Sec 3: Sentence Building Practice';
+      document.getElementById('sec3-sub').innerText = isJa ? '(a)で語順を並べ替えてマスターし、(b)で類題の英作文にチャレンジ！' : '(a) Master sentence structure, (b) Practice writing sentences!';
+
+      document.getElementById('sec4-mode-title').innerText = isJa ? 'Section 4: 総合問題チャレンジ (全24問)' : 'Section 4: Unit 16 Practice Test (24 Questions)';
+      document.getElementById('sec4-mode-sub').innerText = isJa ? 'Unit 16の全24問で実力をテストしましょう。希望する学習スタイルを選択してください。' : 'Test your skills across all 24 questions from Unit 16. Select your preferred style.';
+
+      // Re-render components with language sensitive text
+      renderSection2();
+      renderSection3();
+    }
+
+    // TAB NAVIGATION
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-white', 'text-indigo-900', 'shadow-lg');
+        btn.classList.add('bg-indigo-900/40', 'text-indigo-100');
+      });
+
+      document.getElementById(tabId).classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-${tabId}`);
+      activeBtn.classList.remove('bg-indigo-900/40', 'text-indigo-100');
+      activeBtn.classList.add('bg-white', 'text-indigo-900', 'shadow-lg');
+    }
+
+    function addStats(isCorrect) {
+      globalStats.total += 1;
+      if (isCorrect) globalStats.correct += 1;
+
+      document.getElementById('stat-total').innerText = globalStats.total;
+      document.getElementById('stat-correct').innerText = globalStats.correct;
+      const pct = Math.round((globalStats.correct / globalStats.total) * 100) || 0;
+      document.getElementById('stat-accuracy').innerText = `${pct}%`;
+    }
+
+    // RENDER SECTION 2 (Part A, Part B, Part 2)
+    function renderSection2() {
+      const isJa = currentLang === 'ja';
+
+      // Part A Rendering
+      const containerA = document.getElementById('partA-container');
+      containerA.innerHTML = dataSectionA.map((item, idx) => {
+        const sentenceHtml = item.tokens.map((token, tIdx) => {
+          if (token.type === 'text') {
+            return `<span>${token.value}</span>`;
+          } else {
+            const displayPlaceholder = Array.isArray(token.key) ? token.key[0] : token.key;
+            return `<input type="text" id="a_in_${idx}_${tIdx}" data-ans="${displayPlaceholder}" class="px-2 py-1 ${token.width} rounded-lg border border-slate-300 text-center font-bold focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-all text-indigo-900 inline-block my-1" placeholder="(${tIdx+1})">`;
+          }
+        }).join('');
+
+        return `
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200" id="card_parta_${item.id}">
+            <p class="text-xs font-bold text-slate-500 mb-2">${idx + 1}. ${isJa ? item.jp : item.en}</p>
+            <div class="flex flex-wrap items-center gap-1.5 text-sm sm:text-base font-medium text-slate-800 leading-relaxed">
+              ${sentenceHtml}
+            </div>
+            <div id="a_fb_${item.id}" class="mt-3 text-xs p-3 rounded-xl hidden border"></div>
+          </div>
+        `;
+      }).join('');
+
+      // Part B Rendering
+      const containerB = document.getElementById('partB-container');
+      containerB.innerHTML = dataSectionB.map((item, idx) => {
+        const opts = isJa ? item.options : item.optionsEn;
+        return `
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200" id="card_partb_${item.id}">
+            <p class="text-sm font-bold text-indigo-900 mb-3">${idx + 1}. ${item.en}</p>
+            <div class="space-y-2">
+              ${opts.map((opt, optIdx) => `
+                <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:bg-indigo-50/50 cursor-pointer text-xs sm:text-sm transition-all">
+                  <input type="radio" name="b_opt_${item.id}" value="${optIdx}" class="text-indigo-600 focus:ring-indigo-500">
+                  <span>${opt}</span>
+                </label>
+              `).join('')}
+            </div>
+            <div id="b_fb_${item.id}" class="mt-3 text-xs p-3 rounded-xl hidden border"></div>
+          </div>
+        `;
+      }).join('');
+
+      // Part 2 Rendering
+      const containerPart2 = document.getElementById('part2-container');
+      containerPart2.innerHTML = dataPart2.map((item, idx) => `
+        <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col justify-between" id="card_part2_${item.id}">
+          <div>
+            <span class="text-xs font-bold text-slate-400 mb-1 block">Q${idx + 1}</span>
+            <p class="text-sm font-bold text-slate-800 mb-3">${item.text}</p>
+            <div class="grid grid-cols-2 gap-2 mb-3" id="p2_opts_${item.id}">
+              ${item.options.map(opt => `
+                <button onclick="selectPart2Opt('${item.id}', '${opt}')" id="p2_btn_${item.id}_${opt.replace(/\s+/g,'_')}" class="p2-opt-btn py-2 px-3 bg-white hover:bg-indigo-50 border border-slate-200 rounded-xl font-bold text-xs text-indigo-900 shadow-sm transition-all text-center">
+                  ${opt}
+                </button>
+              `).join('')}
+            </div>
+          </div>
+          <div id="p2_fb_${item.id}" class="text-xs p-3 rounded-xl hidden border"></div>
+        </div>
+      `).join('');
+    }
+
+    let p2Selections = {};
+    function selectPart2Opt(itemId, opt) {
+      p2Selections[itemId] = opt;
+      document.querySelectorAll(`#p2_opts_${itemId} .p2-opt-btn`).forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-600');
+        btn.classList.add('bg-white', 'text-indigo-900', 'border-slate-200');
+      });
+
+      const selectedBtn = document.getElementById(`p2_btn_${itemId}_${opt.replace(/\s+/g,'_')}`);
+      if (selectedBtn) {
+        selectedBtn.classList.remove('bg-white', 'text-indigo-900', 'border-slate-200');
+        selectedBtn.classList.add('bg-indigo-600', 'text-white', 'border-indigo-600');
+      }
+    }
+
+    // SELF-GRADING & HINT-BASED CHECKING FOR SECTION 2
+    function gradePartA() {
+      let score = 0;
+      const isJa = currentLang === 'ja';
+
+      dataSectionA.forEach((item, idx) => {
+        let isItemCorrect = true;
+        const inputs = document.querySelectorAll(`#card_parta_${item.id} input`);
+
+        // SPECIAL LOGIC FOR PROBLEM 6 (a6): ACCEPTS MULTIPLE FLEXIBLE SPLITS ("has been" + "watching" OR "has" + "been watching") AND ("all" OR "since")
+        if (item.id === 'a6') {
+          const val0 = inputs[0] ? inputs[0].value.trim().toLowerCase().replace(/\s+/g, ' ') : '';
+          const val1 = inputs[1] ? inputs[1].value.trim().toLowerCase().replace(/\s+/g, ' ') : '';
+          const val2 = inputs[2] ? inputs[2].value.trim().toLowerCase().replace(/\s+/g, ' ') : '';
+
+          const validVerbCombos = [
+            { v0: 'has been', v1: 'watching' },
+            { v0: 'has', v1: 'been watching' },
+            { v0: 'has', v1: 'watched' }
+          ];
+
+          const isValidVerb = validVerbCombos.some(combo => combo.v0 === val0 && combo.v1 === val1);
+          const isValidPrep = (val2 === 'all' || val2 === 'since');
+
+          isItemCorrect = isValidVerb && isValidPrep;
+
+          if (inputs[0] && inputs[1]) {
+            if (isValidVerb) {
+              inputs[0].classList.remove('border-rose-400', 'bg-rose-50');
+              inputs[0].classList.add('border-emerald-400', 'bg-emerald-50');
+              inputs[1].classList.remove('border-rose-400', 'bg-rose-50');
+              inputs[1].classList.add('border-emerald-400', 'bg-emerald-50');
+            } else {
+              inputs[0].classList.add('border-rose-400', 'bg-rose-50');
+              inputs[0].classList.remove('border-emerald-400', 'bg-emerald-50');
+              inputs[1].classList.add('border-rose-400', 'bg-rose-50');
+              inputs[1].classList.remove('border-emerald-400', 'bg-emerald-50');
+            }
+          }
+
+          if (inputs[2]) {
+            if (isValidPrep) {
+              inputs[2].classList.remove('border-rose-400', 'bg-rose-50');
+              inputs[2].classList.add('border-emerald-400', 'bg-emerald-50');
+            } else {
+              inputs[2].classList.add('border-rose-400', 'bg-rose-50');
+              inputs[2].classList.remove('border-emerald-400', 'bg-emerald-50');
+            }
+          }
+        } else {
+          item.tokens.forEach((token, tIdx) => {
+            if (token.type === 'input') {
+              const inputEl = document.getElementById(`a_in_${idx}_${tIdx}`);
+              if (inputEl) {
+                const userVal = inputEl.value.trim().toLowerCase().replace(/\s+/g, ' ');
+                const expectedKeys = Array.isArray(token.key) 
+                  ? token.key.map(k => k.toLowerCase().replace(/\s+/g, ' ')) 
+                  : [token.key.toLowerCase().replace(/\s+/g, ' ')];
+
+                if (!expectedKeys.includes(userVal)) {
+                  isItemCorrect = false;
+                  inputEl.classList.add('border-rose-400', 'bg-rose-50');
+                  inputEl.classList.remove('border-emerald-400', 'bg-emerald-50');
+                } else {
+                  inputEl.classList.remove('border-rose-400', 'bg-rose-50');
+                  inputEl.classList.add('border-emerald-400', 'bg-emerald-50');
+                }
+              }
+            }
+          });
+        }
+
+        const fb = document.getElementById(`a_fb_${item.id}`);
+        fb.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-200', 'text-emerald-800', 'bg-amber-50', 'border-amber-200', 'text-amber-800');
+
+        if (isItemCorrect) {
+          score++;
+          fb.classList.add('bg-emerald-50', 'border-emerald-200', 'text-emerald-800');
+          fb.innerHTML = `<strong>⭕ ${isJa ? '正解！' : 'Correct!'}</strong>`;
+        } else {
+          fb.classList.add('bg-amber-50', 'border-amber-200', 'text-amber-800');
+          fb.innerHTML = `
+            <strong>💡 ${isJa ? 'おしい！ヒント:' : 'Hint:'}</strong> ${isJa ? item.hint : item.hintEn}
+            <div class="mt-2 text-right">
+              <button onclick="retryPartAItem('${item.id}', ${idx})" class="px-3 py-1 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg text-xs">
+                ${isJa ? 'もう一度解く / Try Again' : 'Try Again'}
+              </button>
+            </div>
+          `;
+        }
+        addStats(isItemCorrect);
+      });
+
+      const display = document.getElementById('parta-score-display');
+      display.classList.remove('hidden');
+      display.innerHTML = `
+        <span class="text-indigo-600">${isJa ? '採点結果' : 'Score'}: ${score} / ${dataSectionA.length} ${isJa ? '点' : 'pts'}</span>
+        <button onclick="switchTab('sec2')" class="ml-4 text-xs text-slate-500 hover:underline">
+          ${isJa ? '見直す' : 'Review'}
+        </button>
+      `;
+    }
+
+    function retryPartAItem(itemId, idx) {
+      const inputs = document.querySelectorAll(`#card_parta_${itemId} input`);
+      inputs.forEach(inputEl => {
+        inputEl.value = '';
+        inputEl.classList.remove('border-rose-400', 'bg-rose-50', 'border-emerald-400', 'bg-emerald-50');
+      });
+      document.getElementById(`a_fb_${itemId}`).classList.add('hidden');
+    }
+
+    function gradePartB() {
+      let score = 0;
+      const isJa = currentLang === 'ja';
+
+      dataSectionB.forEach(item => {
+        const selectedOpt = document.querySelector(`input[name="b_opt_${item.id}"]:checked`);
+        const fb = document.getElementById(`b_fb_${item.id}`);
+        fb.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-200', 'text-emerald-800', 'bg-amber-50', 'border-amber-200', 'text-amber-800');
+
+        const val = selectedOpt ? parseInt(selectedOpt.value) : -1;
+        const isCorrect = val === item.correct;
+
+        if (isCorrect) {
+          score++;
+          fb.classList.add('bg-emerald-50', 'border-emerald-200', 'text-emerald-800');
+          fb.innerHTML = `<strong>⭕ ${isJa ? '正解！' : 'Correct!'}</strong>`;
+        } else {
+          fb.classList.add('bg-amber-50', 'border-amber-200', 'text-amber-800');
+          fb.innerHTML = `
+            <strong>💡 ${isJa ? 'ヒント:' : 'Hint:'}</strong> ${isJa ? item.hint : item.hintEn}
+          `;
+        }
+        addStats(isCorrect);
+      });
+
+      const display = document.getElementById('partb-score-display');
+      display.classList.remove('hidden');
+      display.innerHTML = `<span class="text-indigo-600">${isJa ? '採点結果' : 'Score'}: ${score} / ${dataSectionB.length} ${isJa ? '点' : 'pts'}</span>`;
+    }
+
+    function gradePart2() {
+      let score = 0;
+      const isJa = currentLang === 'ja';
+
+      dataPart2.forEach(item => {
+        const userChoice = p2Selections[item.id] || '';
+        const fb = document.getElementById(`p2_fb_${item.id}`);
+        fb.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-200', 'text-emerald-800', 'bg-amber-50', 'border-amber-200', 'text-amber-800');
+
+        const isCorrect = userChoice === item.correct;
+        if (isCorrect) {
+          score++;
+          fb.classList.add('bg-emerald-50', 'border-emerald-200', 'text-emerald-800');
+          fb.innerHTML = `<strong>⭕ ${isJa ? '正解！' : 'Correct!'}</strong>`;
+        } else {
+          fb.classList.add('bg-amber-50', 'border-amber-200', 'text-amber-800');
+          fb.innerHTML = `
+            <strong>💡 ${isJa ? 'ヒント:' : 'Hint:'}</strong> ${isJa ? item.hint : item.hintEn}
+          `;
+        }
+        addStats(isCorrect);
+      });
+
+      const display = document.getElementById('part2-score-display');
+      display.classList.remove('hidden');
+      display.innerHTML = `<span class="text-indigo-600">${isJa ? '採点結果' : 'Score'}: ${score} / ${dataPart2.length} ${isJa ? '点' : 'pts'}</span>`;
+    }
+
+    // RENDER SECTION 3 (Step-up Rearrangement)
+    function renderSection3() {
+      const isJa = currentLang === 'ja';
+      const container = document.getElementById('sec3-container');
+      container.innerHTML = dataSection3.map(item => `
+        <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-6">
+          <h3 class="font-bold text-slate-800 text-lg border-b border-slate-200 pb-2">${item.title}</h3>
+          
+          <!-- (a) Rearrangement -->
+          <div class="bg-white rounded-xl p-4 border border-slate-200">
+            <span class="text-xs font-bold px-2.5 py-1 bg-indigo-100 text-indigo-700 rounded-full">(a) ${isJa ? '並べ替え問題' : 'Word Ordering'}</span>
+            <p class="text-sm font-bold text-slate-800 mt-2">${isJa ? item.a_jp : item.a_en}</p>
+
+            <div id="chip_pool_${item.id}" class="flex flex-wrap gap-2 my-4 p-3 bg-slate-50 rounded-xl min-h-[50px] border border-dashed border-slate-300">
+              ${item.a_words.map(w => `
+                <button onclick="moveChip(this, 'chip_selected_${item.id}')" class="word-chip px-3 py-1.5 bg-white border border-slate-300 hover:border-indigo-400 text-slate-700 font-bold text-xs rounded-xl shadow-sm">
+                  ${w}
+                </button>
+              `).join('')}
+            </div>
+
+            <p class="text-xs font-bold text-slate-400 mb-1">${isJa ? '作成した文' : 'Constructed Sentence'}:</p>
+            <div id="chip_selected_${item.id}" class="flex flex-wrap gap-2 p-3 bg-indigo-50/50 rounded-xl min-h-[50px] border border-indigo-200 mb-3"></div>
+
+            <div class="flex items-center justify-between gap-4">
+              <button onclick="checkRearrange('${item.id}')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-sm">
+                ${isJa ? '(a) 答え合わせ / Check (a)' : 'Check (a)'}
+              </button>
+              <div id="s3_a_fb_${item.id}" class="text-xs font-bold hidden flex-1 p-2 rounded-lg"></div>
+            </div>
+          </div>
+
+          <!-- (b) Translation -->
+          <div class="bg-white rounded-xl p-4 border border-slate-200">
+            <span class="text-xs font-bold px-2.5 py-1 bg-emerald-100 text-emerald-700 rounded-full">(b) ${isJa ? '英文作成チャレンジ' : 'Sentence Writing'}</span>
+            <p class="text-sm font-bold text-slate-800 mt-2">${isJa ? item.b_jp : item.b_en}</p>
+            <input type="text" id="s3_b_in_${item.id}" class="w-full mt-3 p-3 rounded-xl border border-slate-300 text-sm font-medium focus:border-indigo-500 focus:outline-none" placeholder="${isJa ? '英語で文を入力してください...' : 'Type sentence in English...'}">
+            <div class="flex items-center justify-between gap-4 mt-3">
+              <button onclick="checkTranslation('${item.id}')" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-sm">
+                ${isJa ? '(b) 答え合わせ / Check (b)' : 'Check (b)'}
+              </button>
+              <div id="s3_b_fb_${item.id}" class="text-xs font-bold hidden flex-1 p-2 rounded-lg"></div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function moveChip(chipEl, targetContainerId) {
+      const target = document.getElementById(targetContainerId);
+      const sourcePool = chipEl.parentElement;
+      if (sourcePool.id.startsWith('chip_selected')) {
+        const poolId = sourcePool.id.replace('chip_selected_', 'chip_pool_');
+        document.getElementById(poolId).appendChild(chipEl);
+      } else {
+        target.appendChild(chipEl);
+      }
+    }
+
+    function checkRearrange(itemId) {
+      const item = dataSection3.find(x => x.id === itemId);
+      const selectedBox = document.getElementById(`chip_selected_${itemId}`);
+      const chips = Array.from(selectedBox.children).map(c => c.innerText.trim());
+      let builtSentence = chips.join(' ');
+      if (!builtSentence.endsWith('?') && !builtSentence.endsWith('.')) {
+        builtSentence += item.a_correct.endsWith('?') ? '?' : '.';
+      }
+
+      const fb = document.getElementById(`s3_a_fb_${itemId}`);
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-amber-50', 'text-amber-800');
+
+      const isJa = currentLang === 'ja';
+      const isCorrect = builtSentence.toLowerCase() === item.a_correct.toLowerCase();
+
+      if (isCorrect) {
+        fb.classList.add('bg-emerald-50', 'text-emerald-800');
+        fb.innerHTML = `<strong>⭕ ${isJa ? '完璧です！正解！' : 'Perfect! Correct!'}</strong>`;
+      } else {
+        fb.classList.add('bg-amber-50', 'text-amber-800');
+        fb.innerHTML = `
+          <strong>💡 ${isJa ? 'ヒント' : 'Hint'}:</strong> ${isJa ? item.a_hint : item.a_hintEn}
+        `;
+      }
+      addStats(isCorrect);
+    }
+
+    function checkTranslation(itemId) {
+      const item = dataSection3.find(x => x.id === itemId);
+      const val = document.getElementById(`s3_b_in_${itemId}`).value.trim();
+      const fb = document.getElementById(`s3_b_fb_${itemId}`);
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-amber-50', 'text-amber-800');
+
+      const cleanVal = val.toLowerCase().replace(/[.,?]/g, '');
+      const cleanCorrect = item.b_correct.toLowerCase().replace(/[.,?]/g, '');
+
+      const isJa = currentLang === 'ja';
+      const isCorrect = cleanVal === cleanCorrect;
+
+      if (isCorrect) {
+        fb.classList.add('bg-emerald-50', 'text-emerald-800');
+        fb.innerHTML = `<strong>⭕ ${isJa ? '見事な英作文です！' : 'Excellent Translation!'}</strong>`;
+      } else {
+        fb.classList.add('bg-amber-50', 'text-amber-800');
+        fb.innerHTML = `
+          <strong>💡 ${isJa ? 'ヒント' : 'Hint'}:</strong> ${isJa ? item.b_hint : item.b_hintEn}
+        `;
+      }
+      addStats(isCorrect);
+    }
+
+    // SECTION 4: PRACTICE TEST (SPEED TEST VS EXAM MODE - 24 QUESTIONS)
+    let currentQuizMode = 'exam';
+    let currentQIndex = 0;
+    let quizUserAnswers = {};
+    let timerInterval = null;
+    let timeLeft = 0;
+
+    function startChallenge(mode) {
+      currentQuizMode = mode;
+      currentQIndex = 0;
+      quizUserAnswers = {};
+
+      document.getElementById('sec4-mode-select').classList.add('hidden');
+      document.getElementById('sec4-quiz-active').classList.remove('hidden');
+      document.getElementById('sec4-result-card').classList.add('hidden');
+
+      const badge = document.getElementById('quiz-mode-badge');
+      if (mode === 'speed') {
+        badge.innerText = 'Speed Test Mode';
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold text-white bg-amber-500';
+      } else {
+        badge.innerText = '模擬試験 Style Mode';
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold text-white bg-indigo-600';
+      }
+
+      document.getElementById('quiz-total-num').innerText = quizPool.length;
+
+      if (mode === 'exam') {
+        renderExamQuickNav();
+        startTimer(600); // 10 minutes for 24 questions
+      }
+
+      loadQuestion(currentQIndex);
+    }
+
+    function renderExamQuickNav() {
+      const grid = document.getElementById('exam-grid-nav');
+      grid.classList.remove('hidden');
+      grid.innerHTML = quizPool.map((_, idx) => `
+        <button id="nav-dot-${idx}" onclick="jumpQuestion(${idx})" class="w-7 h-7 rounded-lg font-bold text-xs border border-slate-200 bg-white text-slate-600 hover:bg-indigo-50 shrink-0">
+          ${idx + 1}
+        </button>
+      `).join('');
+    }
+
+    function loadQuestion(idx) {
+      currentQIndex = idx;
+      document.getElementById('quiz-curr-num').innerText = idx + 1;
+
+      const q = quizPool[idx];
+      const box = document.getElementById('quiz-question-box');
+      const speedFb = document.getElementById('speed-feedback-box');
+      speedFb.classList.add('hidden');
+
+      const selectedAnswer = quizUserAnswers[idx] || '';
+
+      box.innerHTML = `
+        <p class="text-base sm:text-lg font-bold text-slate-900 mb-4">${idx + 1}. ${q.q}</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          ${q.options.map(opt => {
+            const isSel = selectedAnswer === opt;
+            return `
+              <button onclick="selectAnswer('${opt}')" class="quiz-opt-btn p-4 rounded-2xl border-2 ${isSel ? 'border-indigo-600 bg-indigo-50/50' : 'border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/20'} text-left font-bold text-slate-700 transition-all flex items-center justify-between">
+                <span>${opt}</span>
+                <div class="radio-dot w-4 h-4 rounded-full border-2 ${isSel ? 'border-indigo-600 bg-indigo-600' : 'border-slate-300'}"></div>
+              </button>
+            `;
+          }).join('')}
+        </div>
+      `;
+
+      if (currentQuizMode === 'speed') {
+        startTimer(20);
+      }
+
+      updateNavButtons();
+    }
+
+    function selectAnswer(opt) {
+      quizUserAnswers[currentQIndex] = opt;
+
+      if (currentQuizMode === 'speed') {
+        clearInterval(timerInterval);
+        const q = quizPool[currentQIndex];
+        const isCorrect = opt === q.correct;
+        const fb = document.getElementById('speed-feedback-box');
+        fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'bg-rose-50', 'text-rose-800');
+
+        const isJa = currentLang === 'ja';
+
+        if (isCorrect) {
+          fb.classList.add('bg-emerald-50', 'text-emerald-800');
+          fb.innerHTML = `<strong>⭕ ${isJa ? '正解！' : 'Correct!'}</strong> ${q.expl}`;
+        } else {
+          fb.classList.add('bg-rose-50', 'text-rose-800');
+          fb.innerHTML = `<strong>❌ ${isJa ? '残念！' : 'Incorrect!'}</strong> ${isJa ? '解説:' : 'Explanation:'} ${q.expl}`;
+        }
+        addStats(isCorrect);
+      } else {
+        const dot = document.getElementById(`nav-dot-${currentQIndex}`);
+        if (dot) {
+          dot.classList.remove('bg-white', 'text-slate-600');
+          dot.classList.add('bg-indigo-600', 'text-white');
+        }
+        loadQuestion(currentQIndex);
+      }
+    }
+
+    function updateNavButtons() {
+      const prevBtn = document.getElementById('btn-prev-q');
+      const nextBtn = document.getElementById('btn-next-q');
+      const isJa = currentLang === 'ja';
+
+      prevBtn.disabled = currentQIndex === 0;
+
+      if (currentQIndex === quizPool.length - 1) {
+        nextBtn.innerText = isJa ? 'テスト提出 / Finish' : 'Finish Test';
+        nextBtn.onclick = finishChallenge;
+      } else {
+        nextBtn.innerText = isJa ? '次へ / Next' : 'Next';
+        nextBtn.onclick = () => navigateExam(1);
+      }
+    }
+
+    function navigateExam(dir) {
+      const target = currentQIndex + dir;
+      if (target >= 0 && target < quizPool.length) {
+        loadQuestion(target);
+      }
+    }
+
+    function jumpQuestion(idx) {
+      loadQuestion(idx);
+    }
+
+    function startTimer(seconds) {
+      clearInterval(timerInterval);
+      timeLeft = seconds;
+      updateTimerDisplay();
+
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          if (currentQuizMode === 'speed') {
+            selectAnswer('');
+          } else {
+            finishChallenge();
+          }
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(timeLeft / 60);
+      const secs = timeLeft % 60;
+      document.getElementById('quiz-timer-display').innerText = 
+        `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+
+    function finishChallenge() {
+      clearInterval(timerInterval);
+      document.getElementById('sec4-quiz-active').classList.add('hidden');
+      document.getElementById('sec4-result-card').classList.remove('hidden');
+
+      let correctCount = 0;
+      const reviewBox = document.getElementById('result-detail-review');
+      reviewBox.innerHTML = '';
+
+      quizPool.forEach((q, idx) => {
+        const userAns = quizUserAnswers[idx] || (currentLang === 'ja' ? '未回答' : 'No Answer');
+        const isCorrect = userAns === q.correct;
+        if (isCorrect) correctCount++;
+
+        reviewBox.innerHTML += `
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <span class="font-bold text-slate-700">Q${idx + 1}. ${q.q}</span>
+              <div class="mt-1 text-slate-500">${currentLang === 'ja' ? 'あなたの回答' : 'Your Answer'}: <span class="font-bold ${isCorrect ? 'text-emerald-600' : 'text-rose-600'}">${userAns}</span></div>
+            </div>
+            <span class="px-2.5 py-1 rounded font-bold shrink-0 text-center ${isCorrect ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}">
+              ${isCorrect ? (currentLang === 'ja' ? '正解' : 'Correct') : `${currentLang === 'ja' ? '正解' : 'Correct'}: ${q.correct}`}
+            </span>
+          </div>
+        `;
+      });
+
+      document.getElementById('result-score').innerText = `${correctCount} / ${quizPool.length}`;
+      const pct = Math.round((correctCount / quizPool.length) * 100);
+      document.getElementById('result-pct').innerText = `${pct}%`;
+    }
+
+    function resetChallenge() {
+      document.getElementById('sec4-result-card').classList.add('hidden');
+      document.getElementById('sec4-mode-select').classList.remove('hidden');
+    }
+
+    function abortChallenge() {
+      clearInterval(timerInterval);
+      resetChallenge();
+    }
+
+    // INITIALIZATION ON WINDOW LOAD
+    window.onload = function() {
+      lucide.createIcons();
+      updatePageLanguage();
+    };
+  </script>
+</body>
+</html>
